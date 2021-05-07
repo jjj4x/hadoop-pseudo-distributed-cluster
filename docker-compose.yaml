@@ -1,0 +1,48 @@
+version: "3.8"
+
+
+services:
+  hpdc:
+    image: hpdc:${HADOOP_VERSION}-${HIVE_VERSION}
+    build:
+      context: .
+      args:
+        HADOOP_VERSION: ${HADOOP_VERSION}
+        HIVE_VERSION: ${HIVE_VERSION}
+    depends_on:
+      - postgres
+    hostname: hpdc
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - hadoop:/opt/hadoop
+      - hive:/opt/hive
+    networks:
+      - hpdc
+    ports:
+      - 50070:50070
+      - 50090:50090
+      - 50075:50075
+      - 8020:8020
+      - 10000:10000
+
+  postgres:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - hpdc
+    ports:
+      - 5432:5432
+
+
+volumes:
+  hadoop:
+    name: hadoop
+  hive:
+    name: hive
+
+
+networks:
+  hpdc:
+    name: hpdc

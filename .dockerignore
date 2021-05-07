@@ -1,0 +1,7 @@
+.git
+.DS_store
+.idea
+venv
+ve
+virtualenv
+**/__pycache__
