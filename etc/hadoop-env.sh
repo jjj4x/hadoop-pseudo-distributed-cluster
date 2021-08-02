@@ -9,9 +9,9 @@ export HADOOP_HEAPSIZE
 
 : "${HADOOP_HOME}:=/opt/hadoop"
 
-HADOOP_IDENT_STRING="${USER}:-hadoop"
+HADOOP_IDENT_STRING="${USER:-hadoop}"
 
-: "${HADOOP_LOG_DIR}:-/opt/hadoop-runtime/logs"
+: "${HADOOP_LOG_DIR:-/opt/hadoop-runtime/logs}"
 
 : "${HADOOP_OS_TYPE}:=$(uname -s)"
 

@@ -48,6 +48,7 @@ ENV JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk \
     HADOOP_LOG_DIR=/opt/hadoop-runtime/logs \
     HIVE_HOME=/opt/hive \
     HIVE_CONF_DIR=/opt/hive/conf \
+    SPARK_CONF_DIR=/opt/spark/conf \
     PATH="${PATH}:/opt/hadoop/bin:/opt/hadoop/sbin:/opt/hive/bin"
 
 COPY --chown=hadoop:hadoop \
@@ -62,3 +63,13 @@ COPY --chown=hadoop:hadoop \
     etc/hive-env.sh \
     etc/hive-site.xml \
     ${HIVE_CONF_DIR}/
+
+COPY --chown=hadoop:hadoop \
+    confs/spark-defaults.conf \
+    confs/spark-env.sh \
+    confs/spark-log4j.properties \
+    ${SPARK_CONF_DIR}/
+
+RUN \
+    chmod 755 /entrypoint.sh \
+    && mv ${SPARK_CONF_DIR}/{spark-,}log4j.properties

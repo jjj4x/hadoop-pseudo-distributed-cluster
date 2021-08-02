@@ -27,7 +27,7 @@
   </property>
 
   <property>
-    <name>datanucleus.autoCreateSchem</name>
+    <name>datanucleus.autoCreateSchema</name>
     <value>true</value>
   </property>
 

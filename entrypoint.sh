@@ -13,8 +13,9 @@ echo '----------------------------------------START DATANODE--------------------
 hadoop-daemon.sh start datanode
 
 echo '-----------------------------------CREATE HDFS DIRECTORIES-----------------------------------'
-hdfs dfs -mkdir -p /apps /tmp /hive/warehouse /user/hadoop /user/dr.who
+hdfs dfs -mkdir -p /apps /tmp /hive/warehouse /user/hadoop /user/dr.who /user/anonymous
 hdfs dfs -chmod -R 1777 /tmp
+hdfs dfs -chmod -R 1777 /hive
 hdfs dfs -chmod 755 /apps
 
 echo '---------------------------------------------HIVE---------------------------------------------'
@@ -34,6 +35,8 @@ schematool -initSchema -dbType postgres
 
 echo '--------------------------------------START HIVE SERVER--------------------------------------'
 hive --service hiveserver2 --skiphbasecp &
+
+echo '---------------------------------------------DONE---------------------------------------------'
 
 if [ $# -eq 0 ]; then
   tail -f /opt/hadoop-runtime/logs/*
