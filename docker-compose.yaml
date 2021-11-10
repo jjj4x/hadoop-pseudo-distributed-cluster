@@ -17,6 +17,7 @@ services:
     volumes:
       - hadoop:/opt/hadoop
       - hive:/opt/hive
+      - spark:/opt/spark
     networks:
       - hpdc
     ports:
@@ -41,6 +42,8 @@ volumes:
     name: hadoop
   hive:
     name: hive
+  spark:
+    name: spark
 
 
 networks:

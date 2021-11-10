@@ -65,9 +65,9 @@ COPY --chown=hadoop:hadoop \
     ${HIVE_CONF_DIR}/
 
 COPY --chown=hadoop:hadoop \
-    confs/spark-defaults.conf \
-    confs/spark-env.sh \
-    confs/spark-log4j.properties \
+    etc/spark-defaults.conf \
+    etc/spark-env.sh \
+    etc/spark-log4j.properties \
     ${SPARK_CONF_DIR}/
 
 RUN \
